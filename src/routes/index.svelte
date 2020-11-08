@@ -27,7 +27,7 @@
 
   const { page } = stores();
 
-  let mounted = null;
+  let mounted = false;
 
   let ghostItem = false;
 

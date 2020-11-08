@@ -11,13 +11,7 @@ import sessionFileStore from 'session-file-store';
 
 const FileStore = new sessionFileStore(session);
 
-const {
-  NODE_ENV,
-  SESSION_SECRET,
-  CART_EMPTY,
-  BACKEND_URL,
-  LOCAL_PORT,
-} = process.env;
+const { NODE_ENV, SESSION_SECRET, CART_EMPTY, BACKEND_URL } = process.env;
 const dev = NODE_ENV === 'development';
 
 polka()

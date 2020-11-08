@@ -45,7 +45,6 @@
 
   // dimensions
   let mounted = false;
-  let title = {};
 
   let innerWidth;
   let innerHeight;
@@ -53,9 +52,11 @@
   let mobile;
 
   // conditional header
+  let header = true;
   $: header = $page.path === '/' || !$currentAddress;
 
   // conditional footer
+  let footer = true;
   $: footer =
     $page.path === '/' ||
     $page.path === '/om-oss' ||
@@ -73,6 +74,13 @@
     orientation: innerHeight > innerWidth ? 'portrait' : 'landscape',
     mobile,
   });
+
+  let title = {
+    w: $viewport.width < 620 || $viewport.scrollY > 100 ? 300 : 600,
+    h: $viewport.width < 620 || $viewport.scrollY > 100 ? 50 : 100,
+    containerW: $viewport.width < 1000 ? 500 : 1000,
+    shadow: $viewport.scrollY > 100 ? '0px 8px 10px -15px #000' : 'none',
+  };
 
   $: if ($viewport) {
     title = {
@@ -111,6 +119,7 @@
 
   // conditional header
 
+  let headerColumns = '50px 1fr';
   $: headerColumns = !header
     ? '1fr'
     : '50px 1fr ' + ($cartMeta.count.total > 0 ? '70px' : '');
