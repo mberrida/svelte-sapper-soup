@@ -41,7 +41,7 @@ _(Raw UX-docs (swe) in the ux-folder)_
 
 - [sapper & rollup](https://github.com/sveltejs/sapper) prepare the meal
 - [svelte](https://svelte.dev/) greets the client
-- [mongo](https://www.mongodb.com/) keeps track of the JWT-signed guestlist and serves the main course (seperate repo)
+- [mongo](https://www.mongodb.com/) keeps track of the JWT-signed guestlist and serves the main course (see [backend-soup](https://github.com/butalsoverycool/backend-soup))
 
 #
 
