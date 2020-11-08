@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="sv">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta name="theme-color" content="#333333" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no, user-scalable=no"
+    />
+    <meta name="msapplication-starturl" content="/" />
+    <meta name="application-name" content="Svelte Sapper Soup!" />
+    <meta name="apple-mobile-web-app-title" content="Svelte Sapper Soup!" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      names="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+
+    <meta
+      name="description"
+      content="Goda och hälsosamma soppor levereras hem till dig. Beställ till dig själv eller ge bort till en vän."
+    />
+
+    %sapper.base%
+
+    <link rel="stylesheet" href="global.css" />
+
+    <link
+      rel="apple-touch-icon"
+      sizes="57x57"
+      href="img/logo/apple-icon-57x57.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="60x60"
+      href="img/logo/apple-icon-60x60.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="72x72"
+      href="img/logo/apple-icon-72x72.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="76x76"
+      href="img/logo/apple-icon-76x76.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="img/logo/apple-icon-114x114.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href="img/logo/apple-icon-120x120.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="img/logo/apple-icon-144x144.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="img/logo/apple-icon-152x152.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="img/logo/apple-icon-180x180.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="img/logo/android-icon-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="img/logo/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="img/logo/favicon-96x96.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="img/logo/favicon-16x16.png"
+    />
+    <link rel="manifest" href="manifest.json" crossorigin="use-credentials" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta
+      name="msapplication-TileImage"
+      content="img/logo/ms-icon-144x144.png"
+    />
+    <meta name="theme-color" content="#ffffff" />
+
+    <style>
+      /* OVERALL */
+      html,
+      body,
+      #sapper,
+      main {
+        width: 100vw;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        touch-action: manipulation;
+        background: #eee;
+      }
+
+      #sapper {
+        display: flex;
+        flex-direction: column;
+      }
+
+      * {
+        transition: all 300ms;
+        color: var(--theme-color-primary);
+        max-height: unset;
+      }
+
+      a,
+      p,
+      div,
+      button,
+      h3,
+      h4,
+      h5,
+      h6,
+      span,
+      input,
+      textarea,
+      label,
+      legend {
+        font-family: monospace;
+      }
+
+      button,
+      a {
+        cursor: pointer;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+        color: var(--theme-color-primary);
+      }
+
+      input {
+        border: none;
+        text-decoration: none;
+        outline: none;
+        background: none;
+      }
+
+      h1,
+      h2,
+      .stage-title > span {
+        font-size: var(--theme-title-fontSize-secondary);
+        text-align: center;
+      }
+
+      p,
+      span,
+      input,
+      textarea,
+      label {
+        font-size: 14px;
+      }
+
+      button,
+      a {
+        font-size: var(--theme-btn-fontSize-primary);
+      }
+
+      /* PAGE */
+      .page {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        align-self: center;
+      }
+
+      /* STAGE */
+      .stage-container {
+        width: calc(100% - 10px);
+        /* left: 5px; */
+        justify-content: flex-start;
+      }
+
+      .stage-title {
+        display: flex;
+        line-height: 1.5em;
+        height: 65px;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        margin: 0 0 20px;
+      }
+
+      .stage-title > span {
+        margin: 0 0.3em;
+      }
+
+      .stage-title > span:first-child {
+        margin-left: 0;
+      }
+
+      /* MEDIA */
+
+      @media all and (max-width: 480px) and (orientation: portrait) {
+        div {
+          min-height: fit-content;
+        }
+
+        main > div {
+          min-height: 100vh;
+        }
+
+        h1,
+        h2,
+        .stage-title > span {
+          font-size: var(--theme-title-fontSize-third);
+        }
+
+        button,
+        a {
+          font-size: var(--theme-btn-fontSize-secondary);
+        }
+
+        p,
+        span,
+        input,
+        textarea,
+        label {
+          font-size: 11px;
+        }
+      }
+
+      @media all and (max-height: 480px) and (orientation: landscape) {
+        div {
+          min-height: fit-content;
+        }
+
+        main > div {
+          min-height: 100vh;
+        }
+      }
+
+      @media all and (min-height: 480px) {
+        .stage-title {
+          margin-bottom: 100px;
+        }
+      }
+
+      @media all and (min-width: 800px) and (min-height: 480px) {
+        h1,
+        h2,
+        .stage-title > span {
+          font-size: var(--theme-title-fontSize-primary);
+        }
+
+        button,
+        a {
+          font-size: var(--theme-btn-fontSize-primary);
+        }
+      }
+    </style>
+
+    <!-- Sapper creates a <script> tag containing `src/client.js`
+	     and anything else it needs to hydrate the app and
+	     initialise the router -->
+    %sapper.scripts%
+
+    <!-- Sapper generates a <style> tag containing critical CSS
+	     for the current page. CSS for the rest of the app is
+	     lazily loaded when it precaches secondary pages -->
+    %sapper.styles%
+
+    <!-- This contains the contents of the <svelte:head> component, if
+	     the current page has one -->
+    %sapper.head%
+  </head>
+
+  <body>
+    <!-- The application will be rendered inside this element,
+	     because `src/client.js` references it -->
+    <div id="sapper">%sapper.html%</div>
+  </body>
+</html>
