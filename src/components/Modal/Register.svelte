@@ -63,7 +63,7 @@
     searching = true;
 
     if (!$streetMap) {
-      return console.log("Can't check street. Streetmap unavailable.");
+      return console.log("Impossible de vérifier l'adresse. Carte indisponible.");
     }
 
     const res = await addressSearch($streetMap, $currentAddress.street);
@@ -76,7 +76,7 @@
       streetError = null;
     } else {
       validStreet.set(false);
-      streetError = 'Vi kunde inte hitta adressen';
+      streetError = 'Nous n\'avons pas pu trouver l\'adresse.';
     }
 
     searching = false;
@@ -91,19 +91,19 @@
     // light input check
     if (hasEmptyFields(checkFields)) {
       error = 'Form data error';
-      msg = 'Ett eller flera obligatoriska fält är tomma';
+      msg = 'Un ou plusieurs champs obligatoires sont vides';
       return;
     }
 
     if (password !== password2) {
       error = 'Form data error';
-      msg = 'Lösenorden matchar inte.';
+      msg = 'Les mots de passe ne correspondent pas.';
       return;
     }
 
     if (!$validStreet) {
       error = 'Form data error';
-      msg = 'Stockholmsaddressen kunde inte hittas.';
+      msg = 'Impossible de trouver l\'adresse à Vannes.';
       return;
     }
 
@@ -125,9 +125,9 @@
 
     if (fetched.status !== 200) {
       error = fetched.status + ' ' + fetched.statusText;
-      msg = httpResMSg(fetched.status, 'registreringen');
+      msg = httpResMSg(fetched.status, 'l\'enregistrement');
 
-      console.error('Signup failed.', error, msg);
+      console.error('Échec de l\'enregistrement.', error, msg);
       return;
     }
 
@@ -148,11 +148,11 @@
 
 <Modal className="logga-in" bind:close>
   {#if submitting}
-    <p class="info">Loggar in...</p>
+    <p class="info">Connexion en cours...</p>
   {:else}
-    <h2>Logga in</h2>
+    <h2>Connexion</h2>
     <form on:submit|preventDefault="{submit}">
-      <label for="firstName">Förnamn*</label>
+      <label for="firstName">Prénom*</label>
       <input
         type="text"
         id="firstName"
@@ -162,7 +162,7 @@
         bind:this="{refs.fName}"
       />
 
-      <label for="lastName">Efternamn*</label>
+      <label for="lastName">Nom de famille*</label>
       <input
         type="text"
         id="lastName"
@@ -172,7 +172,7 @@
         bind:this="{refs.lName}"
       />
 
-      <label for="email">Epost*</label>
+      <label for="email">Email*</label>
       <input
         type="email"
         id="email"
@@ -182,7 +182,7 @@
         bind:this="{refs.email}"
       />
 
-      <label for="password">Lösenord*</label><input
+      <label for="password">Password*</label><input
         type="password"
         id="password"
         bind:value="{password}"
@@ -191,7 +191,7 @@
         bind:this="{refs.password}"
       />
 
-      <label for="password2">Repetera*</label>
+      <label for="password2">Confirmer password*</label>
       <input
         type="password"
         id="password2"
@@ -201,7 +201,7 @@
         bind:this="{refs.password2}"
       />
 
-      <label for="street">Gatuadress*</label>
+      <label for="street">Adresse*</label>
       <input
         type="text"
         id="street"
@@ -218,7 +218,7 @@
         <p class="info error grid">{streetError}</p>
       {/if}
 
-      <label for="zip">Postnr*</label>
+      <label for="zip">Code postal*</label>
       <input
         type="text"
         id="zip"
@@ -227,7 +227,7 @@
         bind:this="{refs.zip}"
       />
 
-      <label for="city">Ort*</label>
+      <label for="city">Ville*</label>
       <input
         type="text"
         id="city"
@@ -236,7 +236,7 @@
         bind:this="{refs.city}"
       />
 
-      <button class="submit" type="submit">Registrera</button>
+      <button class="submit" type="submit">S'inscrire</button>
       <button
         class="cancel option"
         on:click="{() => {
@@ -244,12 +244,12 @@
           close();
         }}"
         type="reset"
-      >Stäng</button>
+      >Fermer</button>
       <button
         class="login strong option"
         on:click="{() => modal.set('login')}"
         type="reset"
-      >Redan medlem?</button>
+      >Déjà membre ?</button>
     </form>
     {#if error}
       <p class="info error">{msg || error}</p>

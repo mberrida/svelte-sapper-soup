@@ -28,7 +28,7 @@
     submitting = true;
     // light input check
     if (hasEmptyFields(fields)) {
-      return (error = 'Ett eller flera obligatoriska fält är tomma');
+      return (error = 'Un ou plusieurs champs obligatoires sont vides');
     }
 
     const fetched = await fetch('fetch/post', {
@@ -47,7 +47,7 @@
     if (fetched.status !== 200) {
       error = fetched.status + ' ' + fetched.statusText;
 
-      msg = httpResMSg(fetched.status, 'inloggningen');
+      msg = httpResMSg(fetched.status, 'Connexion');
 
       console.error('Login failed.', error, msg);
 
@@ -80,17 +80,17 @@
 
 <Modal className="logga-in" bind:close>
   {#if submitting}
-    <p class="info">Loggar in...</p>
+    <p class="info">Connexion en cours...</p>
   {:else}
-    <h2>Logga in</h2>
+    <h2>Connexion</h2>
     <form on:submit|preventDefault="{submit}">
-      <label for="email">Epost</label>
+      <label for="email">Email</label>
       <input type="email" bind:value="{fields.email}" minlength="5" />
 
-      <label for="password" minlength="6">Lösenord</label>
+      <label for="password" minlength="6">Mot de passe</label>
       <input type="password" bind:value="{fields.password}" />
 
-      <button class="submit" type="submit">Logga in</button>
+      <button class="submit" type="submit">Se connecter</button>
 
       <button
         class="cancel"
@@ -99,12 +99,12 @@
           close();
         }}"
         type="reset"
-      >Stäng</button>
+      >Fermer</button>
       <button
         class="register strong"
         on:click="{() => modal.set('register')}"
         type="reset"
-      >Ny medlem?</button>
+      >Nouveau membre ?</button>
     </form>
     {#if error || msg}
       <p class="info error">{msg || error}</p>

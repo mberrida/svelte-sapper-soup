@@ -78,7 +78,7 @@
       count="{3}"
       onClick="{() => {
         if (!validInput) {
-          error = 'Du måste fylla i alla obligatoriska fält.';
+          error = 'Vous devez remplir tous les champs obligatoires.';
           return;
         }
         goto('order~adress');

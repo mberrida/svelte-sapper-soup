@@ -19,20 +19,20 @@
   const trans = { x: 100, duration: 300 };
 </script>
 
-{#if $activeStep.id === 'serveras'}
+{#if $activeStep.id === 'serveurs'}
   <div
     class="temperature stage-container"
     in:fly="{enter}"
-    style="z-index:{$activeStep.id === 'serveras' ? 1 : -1};"
+    style="z-index:{$activeStep.id === 'serveur' ? 1 : -1};"
   >
     <h2 class="stage-title" style="flex-direction:{titleFlexDirection};">
       <span
         style="margin-left:{titleFlexDirection === 'column' ? '0.3em' : '0'};"
       >
-        Hur ska din
+      Comment va le vôtre
       </span>
       <span> {soup.name.toUpperCase()} </span>
-      <span> serveras? </span>
+      <span> serveur? </span>
     </h2>
 
     <div class="options">
@@ -42,9 +42,9 @@
       />
       <div class="label-container">
         {#if hot}
-          <p class="label hot" in:fly="{{ ...trans, delay: 200 }}">Varm</p>
+          <p class="label hot" in:fly="{{ ...trans, delay: 200 }}">Chaude</p>
         {:else}
-          <p class="label cold" in:fly="{{ ...trans, delay: 200 }}">Kall</p>
+          <p class="label cold" in:fly="{{ ...trans, delay: 200 }}">Froide</p>
         {/if}
       </div>
     </div>

@@ -15,25 +15,25 @@ export const httpResMSg = (res, theAction = null) => {
   const status = typeof res === 'number' ? res : res.status ? res.status : null;
 
   if (!res || !theAction || !status) {
-    console.log('httpResMSg behöver http-response och ärende-titeln.');
+    console.log("httpResMSg a besoin d'une réponse http et d'un titre de tâche.");
     return res.statusText;
   }
   const capitalAction = theAction[0].toUpperCase() + theAction.substring(1);
 
   switch (status) {
     case status < 200:
-      return 'Servern har tagit emot förfrågan och hanterar ' + theAction;
+      return 'Le serveur a reçu la demande et traite ' + theAction;
     case status < 300:
-      return capitalAction + ' lyckades.';
+      return capitalAction + ' réussie.';
     case status < 400:
       return (
-        'Förfrågan mottagen, men du behöver vidta fler åtgärder för att fullfölja ' +
+        "Demande reçue, mais vous devez prendre d'autres mesures pour terminer " +
         theAction
       );
     case status < 500:
-      return capitalAction + ' misslyckades. Du skickade inkorrekt data.';
+      return capitalAction + ' échouée. Vous avez envoyé des données incorrectes.';
     default:
-      return capitalAction + ' misslyckades. Något gick fel på servern.';
+      return capitalAction + " échouée. Une erreur s'est produite sur le serveur.";
   }
 };
 
@@ -118,18 +118,18 @@ export const orderStatusMsg = (stage = null, pre) => {
   let due = '';
   let img = 'img/icon/yoga.svg';
 
-  if (stage < 3) due = 'Förväntad leverans';
+  if (stage < 3) due = 'Livraison prévue';
 
-  if (stage === 0) status = 'Din order är mottagen';
+  if (stage === 0) status = 'Votre commande est reçue';
   else if (stage === 1) {
-    status = 'Din order förbereds';
+    status = 'Votre commande est en cours de préparation';
     img = 'img/icon/cooking.svg';
   } else if (stage === 2) {
-    status = 'Din mat är på väg!';
+    status = 'Votre nourriture est en chemin!';
     img = 'img/icon/carrier-east.svg';
   } else if (stage === 3) {
-    status = 'Maten är levererad!';
-    due = 'Levereransdatum';
+    status = 'La nourriture est livrée!';
+    due = 'Date de livraison';
     img = 'img/icon/waiter.svg';
   } else return pre;
 
@@ -225,7 +225,7 @@ export const storage = {
   remove: (key) => (haveStorage() ? localStorage.removeItem(key) : false),
 };
 
-export const addressSearch = async (engine, street, city = 'Stockholm') => {
+export const addressSearch = async (engine, street, city = 'Vannes') => {
   if (typeof engine.search !== 'function') {
     console.log('streetMap engine not provided');
     return false;
@@ -244,7 +244,7 @@ export const addressSearch = async (engine, street, city = 'Stockholm') => {
   }
 
   const label = coords[0].label.split(',');
-  const cityOutput = label[3].substring(1) + ', Stockholm';
+  const cityOutput = label[3].substring(1) + ', Vannes';
   const zip = label[label.length - 2].substring(1);
 
   // console.log(

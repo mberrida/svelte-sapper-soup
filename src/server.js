@@ -8,8 +8,8 @@ import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import session from 'express-session';
 import sessionFileStore from 'session-file-store';
+const FileStore = sessionFileStore(session);
 
-const FileStore = new sessionFileStore(session);
 
 const { NODE_ENV, SESSION_SECRET, CART_EMPTY, BACKEND_URL } = process.env;
 const dev = NODE_ENV === 'development';

@@ -3,7 +3,7 @@
     const res = await this.fetch(`fetch/get~soups~${params.id}`);
 
     if (res.error)
-      return console.error('fetching soup details error', res.error);
+      return console.error('erreur lors de la récupération des détails de la soupe', res.error);
 
     const soup = await res.json();
 
@@ -47,7 +47,7 @@
 </script>
 
 <svelte:head>
-  <title>Svelte Sapper Soup! Om soppan</title>
+  <title>Soupe Svelte Sapper! À propos de la soupe</title>
 </svelte:head>
 
 {#if mounted && soup}
@@ -55,24 +55,24 @@
     <div class="header" style="width:{$viewport.width - 10}px;">
       <div class="header-row">
         <h1 class="title">{soup.name}</h1>
-        <p class="price">{soup.price}kr</p>
+        <p class="price">{soup.price}€</p>
       </div>
       <h2>{soup.description}</h2>
     </div>
 
     <div class="content" style="width:{$viewport.width - 10}px;">
-      <h3 class="section-header">Innehåll</h3>
+      <h3 class="section-header">Contenu</h3>
       {#each soup.content as content}
         <p class="content-line">{content}</p>
       {/each}
 
-      <h3 class="section-header">Näring</h3>
+      <h3 class="section-header">Nutrition</h3>
       {#each soup.nutrition as n (n.name)}
         <p class="content-line">{n.name} {n.value}{n.unit}</p>
         {#if n.children}
           {#each n.children as child (child.name)}
             <p class="content-line child">
-              varav
+              dont
               {child.name}
               {child.value}{child.unit}
             </p>
@@ -92,11 +92,11 @@
           currentSoup.set(null);
         }}"
       >
-        Tillbaka
+      Retour
       </StepNavBtn>
 
       <StepNavBtn href="ny-soppa~{soup.id}~minus" onClick="{addSoup}">
-        Lägg till
+        Ajouter
       </StepNavBtn>
     </StepNav>
 
@@ -105,7 +105,7 @@
     </div>
   </div>
 {:else}
-  <h2>Kunde inte hitta soppan :(</h2>
+  <h2>Impossible de trouver la soupe :(</h2>
 {/if}
 
 <style>

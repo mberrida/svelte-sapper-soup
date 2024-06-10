@@ -86,9 +86,9 @@
         in:fly="{$enter({ delay: 200 })}"
         out:fly="{$exit()}"
       >
-        <h2 class="stage-title">Stämmer dina uppgifter?</h2>
-        <UserOverview user="{$currentUser}" title="Köpare" />
-        <AddressOverview address="{$currentAddress}" title="Leveransadress" />
+        <h2 class="stage-title">Vos informations sont-elles correctes ?</h2>
+        <UserOverview user="{$currentUser}" title="Acheteur" />
+        <AddressOverview address="{$currentAddress}" title="Adresse de livraison" />
       </div>
     {/if}
     <div
@@ -105,7 +105,7 @@
           index="{0}"
           count="{4}"
         >
-          Ja, gå vidare
+        Oui, continuer
         </ActionBtn>
         <!-- {/if} -->
 
@@ -132,7 +132,7 @@
           count="{4}"
           icon="img/icon/arrow-l.svg"
         >
-          Annat konto/gäst
+        Autre compte/client invité
         </ActionBtn>
 
         <ActionBtn
@@ -143,13 +143,13 @@
           onClick="{() => stageDirection.set('left')}"
           icon="img/icon/arrow-fast-l.svg"
         >
-          Varukorgen
+        Panier
         </ActionBtn>
       </ActionOptions>
     </div>
   {:else}
     <p in:fly="{$enter({ delay: 200 })}" out:fly="{$exit()}">
-      Ingen leveransaddress angiven
+      Aucune adresse de livraison spécifiée
     </p>
   {/if}
   <StepNavSpace />

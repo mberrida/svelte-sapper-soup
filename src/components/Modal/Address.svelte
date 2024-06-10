@@ -42,7 +42,7 @@
     : input
     ? input
     : null;
-  $: output = street ? street + ', Stockholm' : '';
+  $: output = street ? street + ', Vannes' : '';
 
   const submit = async () => {
     error = null;
@@ -51,7 +51,7 @@
     // light input check
     if (input.length < 3) {
       error = true;
-      msg = 'Vänligen fyll i en giltig adress i Stockholm';
+      msg = 'Veuillez saisir une adresse valide à Vannes';
       return;
     }
 
@@ -62,7 +62,7 @@
 
     if (!res) {
       error = true;
-      msg = 'Vi kan tyvärr inte leverera till adressen, prova igen.';
+      msg = 'Nous ne pouvons malheureusement pas livrer à cette adresse, veuillez réessayer.';
       inputRef.select();
       return;
     }
@@ -108,7 +108,7 @@
         }}"
       >
         <p>
-          Leveransadress (tryck för att ändra)<br />
+          Adresse de livraison (cliquez pour modifier)  <br />
           <span class="address">{output}
             <img
               class="address-check"
@@ -118,16 +118,16 @@
         </p>
       </div>
     {:else}
-      <h2>Kan vi leverera till dig?</h2>
+      <h2>Pouvons-nous vous livrer?</h2>
 
       <div class="content">
         <form on:submit|preventDefault="{() => (!submitting ? submit() : {})}">
-          <label for="first-name">Gatuadress</label>
+          <label for="first-name">Adresse de rue</label>
           <input
             bind:this="{inputRef}"
             type="text"
             id="first-name"
-            placeholder="{`ex: "Storgatan 1"`}"
+            placeholder="{`ex: "aigle celeste"`}"
             bind:value="{input}"
             minlength="3"
             on:focus="{() => {
@@ -149,7 +149,7 @@
         {/if}
       </div>
       {#if submitting}
-        <p class="info">Laddar...</p>
+        <p class="info">Chargement...</p>
       {/if}
     {/if}
   </div>

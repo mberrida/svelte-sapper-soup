@@ -89,7 +89,7 @@
 
     // light input check
     if (hasEmptyFields(fields))
-      return (error = 'Ett eller flera obligatoriska fält är tomma');
+      return (error = 'Un champ ou plusieurs champs obligatoires sont vides');
 
     const newUser = { ...fields };
     const prevUser = { email, id };
@@ -120,7 +120,7 @@
         mainAddress,
       };
 
-      msg = 'Sparat!';
+      msg = 'Sauvegardé !';
 
       editing = false;
 
@@ -131,7 +131,7 @@
     } else {
       error = res.error;
 
-      msg = res.msg || 'Något gick fel';
+      msg = res.msg || 'Quelque chose s\'est mal passé';
 
       console.error('update user error', error);
     }
@@ -142,7 +142,7 @@
   const validateAddress = async () => {
     error = null;
     searching = true;
-    info = 'Söker efter adressen...';
+    info = 'Recherche de l\'adresse...';
     const addr = await addressSearch($streetMap, fields.mainAddress.street);
 
     if (addr) {
@@ -154,7 +154,7 @@
       fields.mainAddress = { ...fields.mainAddress, street, city, zip };
     } else {
       validStreet.set(false);
-      info = 'Vi kunde inte hitta adressen.';
+      info = 'Nous n\'avons pas pu trouver l\'adresse.';
     }
     searching = false;
 
@@ -166,7 +166,7 @@
 <Modal className="user" bind:close>
   <div class="container">
     {#if submitting}
-      <p class="info">Uppdaterar...</p>
+      <p class="info">Mise à jour...</p>
     {:else}
       <h2>Profil</h2>
       <div class="content">
@@ -177,7 +177,7 @@
               if (msg) msg = '';
             }}"
           >
-            <label for="first-name">Förnamn*</label>
+            <label for="first-name">Prénom*</label>
             <input
               type="text"
               id="first-name"
@@ -186,7 +186,7 @@
               bind:this="{profileRefs.firstName}"
             />
 
-            <label for="last-name">Efternamn*</label>
+            <label for="last-name">Nom de famille*</label>
             <input
               type="text"
               id="last-name"
@@ -195,7 +195,7 @@
               bind:this="{profileRefs.lastName}"
             />
 
-            <label for="email">Epost*</label>
+            <label for="email">Email*</label>
             <input
               type="text"
               id="email"
@@ -207,12 +207,12 @@
             />
             {#if editingEmail}
               <p class="info field">
-                Vid uppdatering av epost behöver du logga in på nytt.
+                Lors de la mise à jour de l'e-mail, vous devez vous reconnecter.
               </p>
             {/if}
             <fieldset class="address">
-              <legend>Adress</legend>
-              <label for="addressFirstName">Förnamn*</label>
+              <legend>Adresse</legend>
+              <label for="addressFirstName">Prénom*</label>
               <input
                 type="text"
                 id="addressFirstName"
@@ -221,7 +221,7 @@
                 bind:this="{addressRefs.firstName}"
               />
 
-              <label for="addressLasttName">Efternamn*</label>
+              <label for="addressLasttName">Nom de famille*</label>
               <input
                 type="text"
                 id="addressLasttName"
@@ -230,7 +230,7 @@
                 bind:this="{addressRefs.lastName}"
               />
 
-              <label for="street">Gatuadress*</label>
+              <label for="street">Adresse*</label>
               <input
                 type="text"
                 id="street"
@@ -241,7 +241,7 @@
                 disabled="{searching}"
               />
 
-              <label for="zip">Postnr*</label>
+              <label for="zip">Code postal*</label>
               <input
                 type="text"
                 id="zip"
@@ -251,7 +251,7 @@
                 disabled="{searching}"
               />
 
-              <label for="city">Ort*</label>
+              <label for="city">Ville*</label>
               <input
                 type="text"
                 id="city"
@@ -265,34 +265,34 @@
               {/if}
             </fieldset>
 
-            <button class="submit" type="submit">Spara ändringar</button>
+            <button class="submit" type="submit">Enregistrer les modifications</button>
           </form>
         {:else if $session.user}
           <div class="profile-data">
             <p>{$session.user.firstName} {$session.user.lastName}</p>
 
             <p>{$session.user.email}</p>
-            <h3>Adress</h3>
+            <h3>Adresse</h3>
             <p>
-              {$session.user.mainAddress.firstName || 'Förnamn: ?'}
-              {$session.user.mainAddress.lastName || 'Efternamn: ?'}
+              {$session.user.mainAddress.firstName || 'Prénom: ?'}
+              {$session.user.mainAddress.lastName || 'Nom de famille: ?'}
             </p>
-            <p>{$session.user.mainAddress.street || 'Gatuadress: ?'}</p>
+            <p>{$session.user.mainAddress.street || 'Adresse: ?'}</p>
             <p>
-              {$session.user.mainAddress.zip || 'Postnr: ?'}
-              {$session.user.mainAddress.city || 'Ort: ?'}
+              {$session.user.mainAddress.zip || 'Code postal: ?'}
+              {$session.user.mainAddress.city || 'Ville: ?'}
             </p>
 
             <button
               class="btn link"
-              href="mina-ordrar"
+              href="mes-commandes"
               rel="prefetch"
               on:click="{() => {
                 stageDirection.set('bottom');
                 modal.set(null);
-                goto('mina-ordrar');
+                goto('mes-commandes');
               }}"
-            >Se köphistorik</button>
+            >Voir l'historique des achats</button>
           </div>
         {/if}
         {#if error}
@@ -305,22 +305,22 @@
             class="cancel-edit"
             on:click="{() => (editing = false)}"
             type="reset"
-          >Avbryt ändring</button>
+          >Annuler la modification</button>
         {:else}
           <button
             on:click="{() => {
               (editing = true), (error = null), (msg = null);
             }}"
-          >Ändra uppgifter</button>
+          >Modifier les informations</button>
         {/if}
-        <button on:click="{logout}">Logga ut</button>
+        <button on:click="{logout}">Déconnexion</button>
 
         <button
           on:click="{() => {
             modal.set(null);
             close();
           }}"
-        >Stäng</button>
+        >Fermer</button>
       </div>
     {/if}
   </div>
